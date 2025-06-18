@@ -1,0 +1,39 @@
+1 QUERY
+SELECT * 
+FROM `students`
+WHERE YEAR (`date_of_birth`) = '1990'
+
+2 QUERY
+SELECT * 
+FROM `courses`
+WHERE `cfu` 
+
+3 QUERY
+SELECT *, TIMESTAMPDIFF(YEAR, `date_of_birth`, CURDATE())
+FROM `students`
+WHERE TIMESTAMPDIFF(YEAR, `date_of_birth`, CURDATE()) > 30
+
+4 QUERY
+SELECT * 
+FROM `courses`
+WHERE `year` = 1 AND `period` = 'I semestre'
+
+5 QUERY
+SELECT * 
+FROM `exams`
+WHERE `date` = '2020-06-20'
+AND HOUR (`hour`) >= 14
+
+6 QUERY
+SELECT * 
+FROM `degrees`
+WHERE `level` = 'magistrale'
+
+7. QUERY
+SELECT COUNT(*) AS `totale`
+FROM `departments`;
+
+8 QUERY
+SELECT COUNT(*)
+FROM `teachers`
+WHERE `phone` IS NULL
