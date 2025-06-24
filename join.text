@@ -1,0 +1,55 @@
+QUERY 1
+SELECT `s`.*
+FROM `students` AS `s`
+JOIN `degrees` AS `d`
+ON `s`.`degree_id` = `d`.`id`
+WHERE `d`.`name` = 'Corso di Laurea in Economia'
+
+QUERY 2
+SELECT `deg`.*
+FROM `departments` AS `dep`
+JOIN `degrees` AS `deg`
+ON `deg`.`department_id` = `dep`.`id`
+WHERE `dep`.`name` = 'Dipartimento di Neuroscienza' AND `deg`.`level` = 'magistrale'
+
+QUERY 3
+SELECT `c`.*
+FROM `teachers` AS `t`
+JOIN `course_teacher` AS `ct`
+ON `ct`.`teacher_id` = `t`.`id`
+JOIN `courses` AS `c`
+ON `c`.`id` = `ct`.`course_id`
+WHERE `t`.`id` = 44
+
+QUERY 4
+SELECT `s`.*, `deg`.`name` AS `degree_name`, `dep`.`name` AS `department_name`
+FROM `students` AS `s`
+JOIN `degrees` AS `deg`
+ON `s`.`degree_id` = `deg`.`id`
+JOIN `departments` AS `dep`
+ON `dep`.`id` = `deg`.`department_id`
+ORDER BY `s`.`surname`, `s`.`name`
+
+QUERY 5
+SELECT `d`.`id`, `d`.`name`, `c`.`id` AS `course_id`, `c`.`name` AS `course_name`, `t`.`id` AS `teacher_id`, concat(`t`.`name`, ' ', `t`.`surname`) AS `teacher_fullname`, `t`.`name` AS `teacher_name`, 
+FROM `degrees` AS `d`
+JOIN `courses` AS `c`
+ON `d`.`id` = `c`.`degree_id`
+JOIN `course_teacher` AS `ct`
+ON `ct`.`course_id` = `c`.`id`
+JOIN `teachers` AS `t`
+ON `t`.`id` = `ct`.`teacher_id`
+
+QUERY 6
+SELECT DISTINCT `dep`.`name` AS `dep_name`, `t`.*
+FROM `degrees` AS `d`
+JOIN `courses` AS `c`
+ON `d`.`id` = `c`.`degree_id`
+JOIN `course_teacher` AS `ct`
+ON `ct`.`course_id` = `c`.`id`
+JOIN `teachers` AS `t`
+ON `t`.`id` = `ct`.`teacher_id`
+JOIN `departments` AS `dep`
+ON `dep`.`id` = `d`.`department_id`
+WHERE `dep`.`name` = 'Dipartimento di Matematica'
+ORDER BY `t`.`name`, `t`.`surname`

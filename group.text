@@ -1,0 +1,19 @@
+QUERY 1
+SELECT COUNT (*) AS `totale`, YEAR (`enrolment_date) AS `year`
+FROM `students`
+GROUP BY `year`
+
+QUERY 2
+SELECT COUNT (*) AS `totale`, `office_address`
+FROM `teachers`
+GROUP BY `office_address`
+
+QUERY 3
+SELECT AVG(`vote`) AS `avg_vote`, `exam_id`
+FROM `exam_student`
+GROUP BY `exam_id`
+
+QUERY 4
+SELECT COUNT (*) AS `num_degrees`, `department_id`
+FROM `degrees`
+GROUP BY `department_id`
